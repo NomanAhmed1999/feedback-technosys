@@ -213,20 +213,19 @@ export class FeedBackComponent implements OnInit {
     console.log("opt", option);
     // console.log("formData", this.data);
     console.log("question", question);
-    
+
     let existingquestionIndex = this.dataToSave.Feedback.findIndex((ele: any) => { return ele['FeedbackQuestionId'] == question.FeedbackQuestionId });
     if (existingquestionIndex != -1) {
       this.dataToSave.Feedback.splice(existingquestionIndex, 1);
     }
     let selectedOption = { FeedbackQuestionId: question.FeedbackQuestionId, FeedbackOption: { FeedbackOptionId: option.FeedbackOptionId, ProductItemId: option.ProductItemId, Comment: option.Comment } }
     this.dataToSave.Feedback.push(selectedOption);
-    
     console.log("dataToSave", this.dataToSave);
-
-
-
     console.log("selectedOption", selectedOption);
-    
+    question.Options.map((singleQuestion: any) => {
+      singleQuestion.checked = false;
+    });
+    option.checked = true;
 
 
     // this.data.question.options.map((item: any) => {
@@ -236,8 +235,8 @@ export class FeedBackComponent implements OnInit {
     // if(!this.data[i].progress){
     //   this.progressFunc();
     // };
-    // this.pageUrl++;
-    // window.location.href = `#question${this.pageUrl}`;
+    this.pageUrl++;
+    window.location.href = `#product${this.pageUrl}`;
     // this.data[i].progress = true;
 
   }

@@ -1,74 +1,122 @@
 <div class="container">
-    <header>
-        <img
-            src="data:image/png;base64,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" />
-        <h2>FOODSINN</h2>
-    </header>
-    <div class="body-container">
-        <div class="progress">
-            <div class="progress2">
-                <div class="progress2-bar" [style.width]="progress + '%'">{{progress ? progress+'%' : ''}}</div>
-            </div>
+  <header>
+    <img
+      src="data:image/png;base64,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"
+    />
+    <h2>FOODSINN</h2>
+  </header>
+  <div class="body-container">
+    <div class="progress">
+      <div class="progress2">
+        <div class="progress2-bar" [style.width]="progress + '%'">
+          {{ progress ? progress + "%" : "" }}
         </div>
-        <div class="q1-container" *ngFor="let question of data.Questions; let i = index"
-            [class]="data.Questions.length - 1 == i ? 'mb-100' : ''" [id]="'question'+i">
-            <div class="q1 w-90">
-                <p id="question1">{{question.QuestionsText}}</p>
-            </div>
-            <div class="q2-inner">
-                <div *ngIf="question.Options.length==0 && question.CanComment">Remarks input [required]=*ngIf="true"</div>
-
-                <div class="product-img-container">
-                    <div class="emoji-container" *ngIf="question.Options?.length > 0">
-                        <div class="btn-grp" *ngFor="let option of question.Options; let childI = index">
-                            <input class="radio-input" type="radio" [value]="option"
-                                (click)="selectedOption($event,question, option, i)">
-                            <p class="alpha">{{childI+1}}</p>
-                            <div class="content">
-                                <p class="review">{{option?.DisplayText}}</p>
-                                <div class="icon">{{option?.emoji}}<i *ngIf="option.checked" class="fa fa-check"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="question.CanComment">Remarks input [required]=*ngIf="CommentRequired"</div>
-                    </div>
-                </div>
-
-                <div class="product-img-container" *ngIf="question.Products?.length > 0">
-                    <div *ngFor="let product of question.Products">
-                        <h2>{{product.ProductName}}</h2>
-                        <!-- <img *ngIf="product.img" [src]="product.img" /> -->
-                        <img src="https://c-va.niceshops.com/upload/image/banner/original/default/17840.jpg" />
-
-                        <div class="emoji-container" *ngIf="question.Options?.length > 0">
-                            <div class="btn-grp" *ngFor="let option of question.Options; let childI = index">
-                                <input class="radio-input" type="radio" [value]="option"
-                                    (click)="selectedOption($event,question, option, i)">
-                                <p class="alpha">{{childI+1}}</p>
-                                <div class="content">
-                                    <p class="review">{{option?.DisplayText}}</p>
-                                    <div class="icon">{{option?.emoji}}<i *ngIf="option.checked"
-                                            class="fa fa-check"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <button (click)="submitForm()" class="submit-btn">Submit</button>
-        <div class="bar"></div>
-        <div class="bar bar1"></div>
-        <div class="bar bar2"></div>
+      </div>
     </div>
+    <div
+      class="q1-container"
+      *ngFor="let question of data.Questions; let i = index"
+      [class]="data.Questions.length - 1 == i ? 'mb-100' : ''"
+    >
+      <!-- without products -->
+      <div class="q1 w-90">
+        <p>{{ question.QuestionsText }}</p>
+      </div>
+      <div class="q2-inner">
+        <div *ngIf="question.Options.length == 0 && question.CanComment">
+          Remarks input [required]=*ngIf="true"
+        </div>
 
+        <div class="product-img-container" [id]="'product' + i">
+          <div class="emoji-container" *ngIf="question.Options?.length > 0">
+            <div
+              class="width-100"
+              *ngFor="let option of question.Options; let childIndex = index"
+            >
+              <div
+                class="btn-grp"
+                *ngIf="option && question.QuestionsText !== 'Any Suggestions'"
+              >
+                <input
+                  class="radio-input"
+                  type="radio"
+                  [value]="option"
+                  (click)="selectedOption($event, question, option, i)"
+                />
+                <p class="alpha">{{ childIndex + 1 }}</p>
+                <div class="content">
+                  <p class="review">{{ option?.DisplayText }}</p>
+                  <div class="icon">
+                    {{ option?.emoji
+                    }}<i *ngIf="option.checked" class="fa fa-check"></i>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="btn-grp"
+                *ngIf="option && question.QuestionsText == 'Any Suggestions'"
+              >
+                <p class="alpha">{{ childIndex + 1 }}</p>
+                <input
+                  class="input-text"
+                  type="text"
+                  (click)="selectedOption($event, question, option, i)"
+                />
+              </div>
+            </div>
+            <div *ngIf="question.CanComment">
+              Remarks input [required]=*ngIf="CommentRequired"
+            </div>
+          </div>
+        </div>
 
+        <!-- with products -->
+        <div *ngIf="question.Products?.length > 0">
+          <div
+            class="product-img-container"
+            *ngFor="let product of question.Products"
+          >
+            <h2 class="heading-margin">{{ product.ProductName }}</h2>
+            <img
+              src="https://c-va.niceshops.com/upload/image/banner/original/default/17840.jpg"
+            />
 
+            <div class="emoji-container" *ngIf="question.Options?.length > 0">
+              <div
+                class="width-100"
+                *ngFor="let option of question.Options; let childIndex = index"
+              >
+                <div class="btn-grp">
+                  <input
+                    class="radio-input"
+                    type="radio"
+                    [value]="option"
+                    (click)="selectedOption($event, question, option, i)"
+                  />
+                  <p class="alpha">{{ childIndex + 1 }}</p>
+                  <div class="content">
+                    <p class="review">{{ option?.DisplayText }}</p>
+                    <div class="icon">
+                      {{ option?.emoji
+                      }}<i *ngIf="option.checked" class="fa fa-check"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button (click)="submitForm()" class="submit-btn">Submit</button>
+    <div class="bar"></div>
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+  </div>
 </div>
 <footer>
-    <div class="footer-container">
-        <img src="./assets/images/tslogo_white.png" />
-        <a href="http://www.technosysint.com/">www.technosys.com</a>
-    </div>
+  <div class="footer-container">
+    <img src="./assets/images/tslogo_white.png" />
+    <a href="http://www.technosysint.com/">www.technosys.com</a>
+  </div>
 </footer>

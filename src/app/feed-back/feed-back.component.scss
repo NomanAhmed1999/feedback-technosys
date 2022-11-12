@@ -86,9 +86,10 @@ header {
     justify-content: center;
     margin: 10% 0px 5% 10px;
     z-index: 2;
-    background: #f7f7f7a1;
+    background: rgb(215 214 214 / 63%);
     padding: 2%;
     width: 100%;
+    box-shadow: 0px 0px 6px 1px grey;
 
 
     .q1 {
@@ -267,6 +268,10 @@ footer {
     width: 90%;
 }
 
+.width-100 {
+    width: 100%;
+}
+
 h2 {
     font-family: sans-serif;
 }
@@ -275,7 +280,11 @@ h2 {
     margin-bottom: 100px;
 }
 
-.radio-input{
+.heading-margin {
+    margin: 5% 0 2% 0;
+}
+
+.radio-input {
     width: 100%;
     position: absolute;
     opacity: 0;
@@ -291,6 +300,7 @@ h2 {
     z-index: 5;
     position: fixed;
     top: -10px;
+
     p {
         text-align: end;
         margin: -3px;
@@ -299,12 +309,11 @@ h2 {
 
 .progress2 {
     width: 100%;
-    border: 1px solid rgba(9,58,121,1);
+    border: 1px solid rgba(9, 58, 121, 1);
     display: flex;
     height: 1rem;
     margin-top: 1rem;
     overflow: hidden
-    
 }
 
 .progress2-bar {
@@ -313,4 +322,14 @@ h2 {
     color: $font-color;
     display: flex;
     justify-content: center;
+}
+
+.input-text {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+
+    &:focus-visible {
+        outline: none;
+    }
 }
