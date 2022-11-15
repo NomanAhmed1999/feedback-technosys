@@ -7,12 +7,17 @@ import { NetworkService } from '../services/network.service';
   styleUrls: ['./feed-back.component.scss']
 })
 export class FeedBackComponent implements OnInit {
-  barValue: number = 0;
   barCount: number = 0;
   progress: number = 0;
+  error: boolean = false;
   pageUrl = 0;
   dataToSave: any = { SaleInvoiceId: undefined, ClientInformationId: undefined, Feedback: [] = [] };
   data: any;
+  selectedOptions: any;
+  SaleInvoiceId: number = 0;
+  productCount: number = 0;
+  suggestion: string = '';
+  selectedProductWithImg: any[] = [];
   // data: any = [
   //   {
   //     progress: false,
@@ -165,81 +170,83 @@ export class FeedBackComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
     this.data = this.network.data;
-    // this.formData.Questions[0].Options.map()
     console.log("form data", this.data);
-
-    this.progress = Math.round((100 / this.data.Questions.length) * this.barCount);
+    this.dataToSave.SaleInvoiceId = this.SaleInvoiceId;
   }
 
   async getData() {
-    const data = await this.network.getFormData();
-    console.log("data", data);
+    const data = await (await this.network.getFormData()).subscribe((x: any) => {
+      console.log("data", x);
+    });
 
   }
 
-
-  submitForm() {
-    console.log("submit", this.data);
-  };
 
 
   progressFunc() {
 
-    this.barValue += 50;
     this.barCount += Number(1);
-    this.progress = Math.round((100 / this.data.Questions.length) * this.barCount);
+    let products = this.data.Questions.map((question: any) => {
+      if (question.Products && question.Products.length > 0) {
+        this.productCount = question.Products.length;
+      }
+    });
+    this.progress = Math.round((100 / (this.data.Questions.length + this.productCount)) * this.barCount);
     console.log("progress", this.progress);
-
-    // if (
-    //   document.querySelectorAll(".progress").length > 0 &&
-    //   document.querySelectorAll(`.progress [data-progress]`).length > 0
-    // ) {
-    //   document
-    //     .querySelectorAll(`.progress [data-progress]`)
-    //     .forEach((x) => this.AnimateProgress(x));
-    // }
   }
 
-  // AnimateProgress(el: any) {
-  //   el.className = "animate-progress";
-  //   el.setAttribute(
-  //     "style",
-  //     `--animate-progress:${this.barValue}%;`
-  //   );
-  // }
 
-  selectedOption(event: any, question: any, option: any, i: number) {
-    // console.log("event", i);
+  selectedOption(event: any, question: any, option: any, index: any) {
     console.log("opt", option);
-    // console.log("formData", this.data);
     console.log("question", question);
-
-    let existingquestionIndex = this.dataToSave.Feedback.findIndex((ele: any) => { return ele['FeedbackQuestionId'] == question.FeedbackQuestionId });
+    let existingquestionIndex = this.dataToSave.Feedback.findIndex((ele: any) => { return ele['FeedbackQuestionId'] == option.FeedbackQuestionId && ele.ProductIndex == option.ProductIndex });
     if (existingquestionIndex != -1) {
       this.dataToSave.Feedback.splice(existingquestionIndex, 1);
+    }else{
+    this.progressFunc();
     }
-    let selectedOption = { FeedbackQuestionId: question.FeedbackQuestionId, FeedbackOption: { FeedbackOptionId: option.FeedbackOptionId, ProductItemId: option.ProductItemId, Comment: option.Comment } }
-    this.dataToSave.Feedback.push(selectedOption);
-    console.log("dataToSave", this.dataToSave);
-    console.log("selectedOption", selectedOption);
+    this.selectedOptions = { FeedbackQuestionId: option.FeedbackQuestionId, FeedbackOption: { FeedbackOptionId: option.FeedbackOptionId, ProductItemId: question.ProductItemId, Comment: option.Comment } }
+    this.dataToSave.Feedback.push(this.selectedOptions);
+
+    // Work For check mark 
     question.Options.map((singleQuestion: any) => {
       singleQuestion.checked = false;
     });
     option.checked = true;
-
-
-    // this.data.question.options.map((item: any) => {
-    //   item.checked = false;
-    // });
-    // option.checked = true;
-    // if(!this.data[i].progress){
-    //   this.progressFunc();
-    // };
-    this.pageUrl++;
-    window.location.href = `#product${this.pageUrl}`;
-    // this.data[i].progress = true;
-
   }
+
+  // fOR PRODUCT WITH IMAGES
+
+  selectedProductOption(event: any, question: any, option: any, index: any) {
+    let existingquestionIndex = this.selectedProductWithImg.findIndex((ele: any) => { return ele.ProductIndex == option.ProductIndex });
+    console.log("existingquestionIndex", existingquestionIndex);
+    if (existingquestionIndex != -1) {
+      this.selectedProductWithImg.splice(existingquestionIndex, 1);
+    }else{
+      this.progressFunc();
+    };
+    this.selectedProductWithImg.push(option);
+    console.log("selectedProductWithImg", this.selectedProductWithImg);
+    // Work For check mark 
+    question.Options.map((singleQuestion: any) => {
+      singleQuestion.checked = false;
+    });
+    option.checked = true;
+  }
+
+  submitForm() {
+    console.log("dataToSave", this.dataToSave);
+    if (this.suggestion.length > 0) {
+      this.progressFunc();
+      console.log("products", this.selectedProductWithImg);
+      
+    } else {
+      this.error = true;
+      setTimeout(() => {
+        this.error = false;
+      }, 2000);
+    }
+  };
 
 
 }
